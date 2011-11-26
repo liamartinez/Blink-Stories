@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<users>
+  <user>
+    <blink time="1714.0"/>
+    <blink time="2066.0"/>
+    <blink time="2236.0"/>
+    <blink time="2418.0"/>
+    <blink time="2596.0"/>
+  </user>
+  <user>
+    <blink time="1498.0"/>
+    <blink time="1653.0"/>
+    <blink time="1801.0"/>
+    <blink time="1988.0"/>
+    <blink time="2128.0"/>
+  </user>
+  <user>
+    <blink time="2572.0"/>
+    <blink time="3082.0"/>
+    <blink time="3389.0"/>
+    <blink time="5182.0"/>
+    <blink time="5578.0"/>
+    <blink time="5903.0"/>
+  </user>
+  <user>
+    <blink time="3608.0"/>
+    <blink time="3977.0"/>
+    <blink time="4145.0"/>
+    <blink time="4292.0"/>
+    <blink time="4715.0"/>
+    <blink time="4893.0"/>
+    <blink time="5056.0"/>
+    <blink time="5238.0"/>
+  </user>
+  <user>
+    <blink time="6896.0"/>
+    <blink time="7141.0"/>
+  </user>
+  <user>
+    <blink time="8097.0"/>
+  </user>
+  <user/>
+  <user>
+    <blink time="3744.0"/>
+    <blink time="3978.0"/>
+    <blink time="4266.0"/>
+    <blink time="4964.0"/>
+    <blink time="5148.0"/>
+    <blink time="5375.0"/>
+  </user>
+  <user>
+    <blink time="7349.0"/>
+    <blink time="7519.0"/>
+  </user>
+  <user>
+    <blink time="8386.0"/>
+  </user>
+  <user>
+    <blink time="1859.0"/>
+    <blink time="2258.0"/>
+    <blink time="2423.0"/>
+    <blink time="2642.0"/>
+  </user>
+  <user>
+    <blink time="3859.0"/>
+  </user>
+</users>
