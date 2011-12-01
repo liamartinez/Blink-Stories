@@ -236,4 +236,9 @@
     <blink time="1538.0"/>
     <blink time="1616.0"/>
   </user>
+  <user>
+    <blink time="19.0"/>
+    <blink time="45.0"/>
+    <blink time="55.0"/>
+  </user>
 </users>
