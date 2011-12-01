@@ -16,9 +16,8 @@ class User
     {
        float blinkNum = (Float) blinks.get(i);
        blinkTime = map (blinkNum, 0, maxTime, boxCorX, boxCorX + boxWidth); 
-       fill (0, 70); 
-       noStroke(); 
-       ellipse (blinkTime, locY, 10, 10); 
+       fill (250); 
+       ellipse (blinkTime, locY+40, 7, 7); 
 
     }
   }

@@ -17,9 +17,9 @@ proxml.XMLElement XMLusers;
 proxml.XMLElement video; 
 proxml.XMLElement newUser;
 
- proxml.XMLElement userz;
-  proxml.XMLElement blinkz;
+int blinkTime; 
 
+//----------------------------------------------------------------------------------
 
 void setup () {
   size (1000, 500); 
@@ -41,37 +41,52 @@ void setup () {
   smooth(); 
   timez = millis();
   movie = new Movie (this, "pulp.mp4"); 
-  movie.loop(); 
-  isPlaying = true;
+
+  movie.play();
+  movie.goToBeginning();
+  movie.pause();
+
+  isPlaying = false;
   boxStartY = height - dotLoc*2;
 
-  /*
   newUser = new proxml.XMLElement ("user");
   XMLusers.addChild(newUser);
-  */
 }
 
+//----------------------------------------------------------------------------------
 
 void draw () {
   background (255); 
   textFont (font, 10); 
   timez = millis(); 
 
+  //text(getFrame() + " / " + (getLength() - 1), 10, 30);
   //draw the lines
-  for (float i = 0; i < maxTime; i = i+ increment) {
-    float loc = map (i, 0, maxTime, 0, width); 
-    line (loc, boxStartY, loc, height); 
-    text (int(i/increment), loc + 5, height-20 );
+  //  for (float i = 0; i < maxTime; i = i+ increment) {
+  for (float i = 0; i < getLength(); i = i+ 50) {
+    float loc = map (i, 0, getLength(), 50, width-50); 
+    line (loc, boxStartY, loc, height-20); 
+    /*
+    if (loc%50==0) {
+      text (int(loc), loc, height-60 );
+    }
+    */
   }
 
   fill (0); 
-  image (movie, 0, 0, width/2, height/2); 
+  image (movie, width/10, height/6, width/2, height/2); 
+  fill (0); 
+  text("frame: " + " " + getFrame() + " / " + (getLength() - 1), width/2 + width/8, height/2);
+  text ("Press P to play and pause", width/2 + width/8, height/2 + 20); 
+  text ("Press N to for a new user", width/2 + width/8, height/2 + 40); 
+  text ("mousebutton for Blink", width/2 + width/8, height/2 + 60); 
+  blinkTime = getFrame();
 
   for (int i=0; i<blinks.size(); i++) {  
     //ellipse (i*15, height/2, 10, 10);
     Blink b = (Blink) blinks.get(i); 
-    float locTime = map (b.time, 0, maxTime, 0, width); 
-    ellipse (locTime, height - dotLoc, 10, 10);
+    float locTime = map (b.time, 0, getLength(), 50, width-50); 
+    ellipse (locTime, height - dotLoc, 4, 4);
     //line (locTime, 0, locTime, height); 
     println(b.time);
   }
@@ -80,7 +95,8 @@ void draw () {
 //----------------------------------------------------------------------------------
 
 void mouseClicked () {
-  addNewBlink(timez);
+  addNewBlink(blinkTime);
+  //addNewBlink (timez); 
   saveData(); 
   //saveToDisk();
 }
@@ -90,11 +106,11 @@ void mouseClicked () {
 void keyPressed () {
   if (key == 'p') {
     // toggle pausing
-    if (isPlaying) {
-      movie.pause();
+    if (!isPlaying) {
+      movie.play();
     } 
     else {
-      movie.play();
+      movie.pause();
     }
     isPlaying = !isPlaying;
   } 
@@ -129,21 +145,13 @@ void initXML () {
 
 //-----------------------------------------------------------------------------------------------------------------------
 
-
 void addNewBlink (float time) {
   blinks.add (new Blink(time));
 
-  //proxml.XMLElement XMLusers_ = new proxml.XMLElement ("users");
-  //XMLusers.addChild (XMLusers_);
-
-
-
-  //proXML.XMLElement video = new proXML.XMLElement ("video"); 
   proxml.XMLElement blink = new proxml.XMLElement ("blink"); 
   blink.addAttribute ("time", time);
   newUser.addChild(blink);
 }
-
 //-----------------------------------------------------------------------------------------------------------------------
 
 void saveData() {
@@ -156,29 +164,6 @@ void saveData() {
 /* called automatically whenever an XML file is loaded */
 void xmlEvent(proxml.XMLElement element) {
   XMLusers = element;
-  //initXML(); 
-  
-  proxml.XMLElement[] users = XMLusers.getChildren();
-  for (int i = 0; i < users.length;i++) {
-    userz = users[i];
-    println(userz);
-    proxml.XMLElement[] blinks = userz.getChildren();
-    for (int j = 0; j < blinks.length; j++) {
-    blinkz = blinks[i];
-    println(blinkz);
-    
-    blinkz.getFloatAttribute ("time");     
-      
-    }
-
-    /*
-    String[] users = child.getAttributes();
-    for (int j = 0; j<users.length; j++)
-    { 
-      println (users[j] + " " + child.getAttribute (users[j]));
-    }
-    */
-  }
 }
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -194,4 +179,35 @@ void clear() {
   // save the new empty list to disk
   saveData();
 }
+//----------------------------------------------------------------------------------------------------------------
+
+int getFrame() {    
+  return ceil(movie.time() * movie.getSourceFrameRate()) - 1;
+}
+
+void setFrame(int n) {
+  movie.play();
+
+  float srcFramerate = movie.getSourceFrameRate();
+
+  // The duration of a single frame:
+  float frameDuration = 1.0 / srcFramerate;
+
+  // We move to the middle of the frame by adding 0.5:
+  float where = (n + 0.5) * frameDuration; 
+
+  // Taking into account border effects:
+  float diff = movie.duration() - where;
+  if (diff < 0) {
+    where += diff - 0.25 * frameDuration;
+  }
+
+  movie.jump(where);
+
+  movie.pause();
+}  
+
+int getLength() {
+  return int(movie.duration() * movie.getSourceFrameRate());
+}  
 

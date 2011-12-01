@@ -30,10 +30,10 @@ void setup () {
   boxWidth = width - sideBorder * 2; 
   boxHeight = height - topBorder * 2; 
   
-  maxTime = 130000; 
+  maxTime = 120000; 
   
-  noFill(); 
-  rect (boxCorX, boxCorY, boxWidth, boxHeight); 
+  
+
   
   xmlIO = new XMLInOut (this);
   try {
@@ -47,6 +47,9 @@ void setup () {
 //-----------------------------------------------------------------------------------------------------------------------
 
 void draw () {
+  background (0); 
+  fill (100);
+  rect (boxCorX, boxCorY, boxWidth, boxHeight); 
   
   for (int i = 0; i < userList.size(); i++) 
   {
