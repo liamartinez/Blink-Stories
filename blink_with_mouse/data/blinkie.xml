@@ -241,4 +241,21 @@
     <blink time="45.0"/>
     <blink time="55.0"/>
   </user>
+  <user>
+    <blink time="30.0"/>
+    <blink time="50.0"/>
+    <blink time="73.0"/>
+    <blink time="87.0"/>
+    <blink time="96.0"/>
+    <blink time="102.0"/>
+    <blink time="105.0"/>
+    <blink time="111.0"/>
+    <blink time="118.0"/>
+    <blink time="247.0"/>
+    <blink time="258.0"/>
+  </user>
+  <user>
+    <blink time="108.0"/>
+    <blink time="723.0"/>
+  </user>
 </users>

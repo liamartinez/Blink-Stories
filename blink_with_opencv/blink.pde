@@ -1,11 +1,9 @@
 class Blink {
 
-float time; 
-  
-Blink (float x) {
-time = x;
+  float time; 
+
+  Blink (float x) {
+    time = x;
+  }
 }
 
-
-
-}
