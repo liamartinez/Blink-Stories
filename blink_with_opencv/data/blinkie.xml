@@ -50,4 +50,10 @@
       <blink time="366.0"/>
     </clip>
   </user>
+  <user>
+    <clip/>
+    <clip num="2">
+      <blink time="22.0"/>
+    </clip>
+  </user>
 </users>

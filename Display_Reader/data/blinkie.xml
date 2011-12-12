@@ -30,6 +30,16 @@
           <blink time="128.0"/>
           <blink time="149.0"/>
            <blink time="159.0"/>
+           <blink time="259.0"/>
+           <blink time="359.0"/>
+           <blink time="459.0"/>
+           <blink time="559.0"/>
+           <blink time="659.0"/>
+           <blink time="759.0"/>
+           <blink time="859.0"/>
+           <blink time="959.0"/>
+           <blink time="1059.0"/>
+           <blink time="2159.0"/>
       </clip>
     <clip num="1">
       <blink time="78.0"/>
