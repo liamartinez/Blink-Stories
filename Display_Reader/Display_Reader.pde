@@ -1,7 +1,7 @@
 import processing.pdf.*;
 
-
-
+boolean recording;
+PGraphicsPDF pdf;
 
 Frame[] frame = new Frame [3000]; 
 PImage [] mermaid = new PImage[3000]; 
@@ -39,8 +39,8 @@ void setup () {
   size (1350, 1800); 
   smooth(); 
 
-  //noLoop();
-  //beginRecord(PDF, "littlemermaid.pdf"); 
+//  noLoop();
+//  beginRecord(PDF, "littlemermaid.pdf"); 
 
   timeInc = 30; 
   increment = 0; 
@@ -81,7 +81,8 @@ void setup () {
 //-----------------------------------------------------------------------------------------------------------------------
 
 void draw () {
-  background (255); 
+  //background (255); 
+  pdf = (PGraphicsPDF) createGraphics(width, height, PDF, "pause-resume.pdf");
 
   for (int i=0; i< mermaid.length; i=i + timeInc) {                                //loop through the frames
     int imageLoc = int(map (i, 0, mermaid.length, 0, width*10));  
@@ -97,23 +98,23 @@ void draw () {
      for (int c = 0; c < u.clips.size(); c++) {
      */
 
-    ArrayList clips2 = getClips(2);
-    for (int j = 0; j < clips2.size(); j++) {
-      Clip c2 = (Clip) clips2.get(j); 
+    ArrayList clips1 = getClips(1);
+    for (int j = 0; j < clips1.size(); j++) {
+      Clip c1 = (Clip) clips1.get(j); 
 
-      for (int k = 0; k< c2.blinks.size(); k++) {
-        float blinkNum = (Float) c2.blinks.get(k);
+      for (int k = 0; k< c1.blinks.size(); k++) {
+        float blinkNum = (Float) c1.blinks.get(k);
 
-        if (blinkNum >= i-20 && blinkNum <= i+20) {
+        if (blinkNum >= i-10 && blinkNum <= i+10) {
           //distance = distance + 20; 
           //frame[i].imageTint = 100; 
           //println(frame[i].imageTint);
           if(j == 0){
-            frame[i].user1Blinked = true;
+          frame[i].user1Blinked = true;
           }
           
           if(j == 1){
-                      frame[i].user2Blinked = true;
+          frame[i].user2Blinked = true;
 
           }
           
@@ -144,6 +145,7 @@ void draw () {
   }
 
   //endRecord();
+ 
 }
 
 
@@ -206,3 +208,22 @@ void xmlEvent(proxml.XMLElement element) {
   }
 }
 
+
+void keyPressed() {
+  if (key == 'r') {
+    if (recording) {
+      endRecord();
+      println("Recording stopped.");
+      recording = false;
+    } else {
+      beginRecord(pdf);
+      println("Recording started.");
+      recording = true;
+    }
+  } else if (key == 'q') {
+    if (recording) {
+      endRecord();
+    }
+    exit();
+  }  
+}

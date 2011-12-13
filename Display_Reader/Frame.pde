@@ -7,8 +7,8 @@ class Frame {
   int imageLocation; 
   int imageX;
   int imageRow = 1; 
-  int imageInit; 
- // int imageTint = 0; 
+  int imageInit;
+  int imageTint = 255; 
   
   boolean user1Blinked;
   boolean user2Blinked;
@@ -28,16 +28,18 @@ class Frame {
     imageRow = imageX/width; 
     imageX = imageX - (width*imageRow);
     
-    //tint (255,imageTint); 
+    tint (imageTint); 
+   
     image (framePic, imageX, imageRow*laki, lakiY, laki); // "laki" is size 
     pushMatrix();
     translate(imageX, imageRow*laki);
     fill(255);
-    text(frameNum, 0, 10);
+    //text(frameNum, 0, 10);
     
     if(user1Blinked){
-      fill(255,0,0);
-      ellipse(50,50,10,10);
+      imageTint = 100; 
+      //fill(255,0,0);
+      //ellipse(50,50,10,10);
     }
     
     if(user2Blinked){

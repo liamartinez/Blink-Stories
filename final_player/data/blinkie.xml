@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<users>
+  <user>
+    <clip num="1">
+      <blink time="24.0"/>
+
+    </clip>
+    <clip num="2">
+      <blink time="39.0"/>
+      <blink time="60.0"/>
+      <blink time="83.0"/>
+      <blink time="105.0"/>
+      <blink time="126.0"/>
+      <blink time="147.0"/>
+    </clip>
+    <clip num="1">
+      <blink time="29.0"/>
+      <blink time="54.0"/>
+      <blink time="78.0"/>
+      <blink time="105.0"/>
+      <blink time="130.0"/>
+    </clip>
+  </user>
+  <user>
+      <clip num="2">
+          <blink time="30.0"/>
+          <blink time="60.0"/>
+          <blink time="81.0"/>
+          <blink time="105.0"/>
+          <blink time="128.0"/>
+          <blink time="149.0"/>
+          <blink time="159.0"/>
+      </clip>
+    <clip num="1">
+      <blink time="78.0"/>
+      <blink time="103.0"/>
+      <blink time="128.0"/>
+      <blink time="149.0"/>
+      <blink time="172.0"/>
+      <blink time="194.0"/>
+      <blink time="251.0"/>
+      <blink time="276.0"/>
+      <blink time="301.0"/>
+      <blink time="366.0"/>
+    </clip>
+  </user>
+</users>
