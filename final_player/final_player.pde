@@ -36,7 +36,7 @@ float maxTime;
 //-----------------------------------------------------------------------------------------------------------------------
 
 void setup () {
-  size (1300, 500); 
+  size (720, 480); 
 
   smooth(); 
   font = loadFont ("SansSerif-48.vlw");
@@ -79,11 +79,13 @@ void setup () {
 void draw () {
   background (0); 
   fill (100);
+  smooth(); 
+  noStroke(); 
   //rect (boxCorX, boxCorY, boxWidth, boxHeight); 
 
   film.play(movie); 
   movieTime = film.getFrame(movie);
-  text("frame: " + " " + film.getFrame(movie) + " / " + (film.getLength(movie) - 1), width/2 + width/8, height/2+40);
+  text("frame: " + " " + film.getFrame(movie) + " / " + (film.getLength(movie) - 1), width/2, height-height/12);
 
   for (int q = 0; q < userList.size(); q++) 
   {
@@ -105,13 +107,13 @@ void draw () {
             //isTimerOn = true; 
 
             if (k == 0) {
-                          fill(0, 255, 0);
-            ellipse ( width/2, height/2, 100, 100);
+            fill(200);
+            ellipse ( width/8, height-height/5, 50, 50);
             }
 
             if (k == 1) {
-                          fill(255, 0, 0);
-            ellipse ( width/2, height/2, 100, 100);
+            fill(200);
+            ellipse ( width/8 + width/8, height-height/5, 50, 50);
             }
             blinkNow = millis();
           }
@@ -120,10 +122,10 @@ void draw () {
     }
 
     // println(millis() - blinkNow + 100);
-    if (millis() - blinkNow >= 100) {
+    if (millis() - blinkNow >= 200) {
       println("hide");
       fill(0, 0, 0);
-      ellipse ( width/2, height/2, 100, 100);
+      //ellipse ( width/2, height/2, 100, 100);
     }
 
     // ArrayList clips2 = getClips(2);

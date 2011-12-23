@@ -6,11 +6,13 @@ PGraphicsPDF pdf;
 Frame[] frame = new Frame [3000]; 
 PImage [] mermaid = new PImage[3000]; 
 int timeInc; 
+int mapMultiplier; 
 
-int laki = 100; 
-int lakiY = 140; 
+int lakiY = 100; 
+int laki = 140; 
 int increment; 
 int distance; 
+int blinkDistance; 
 
 
 import proxml.*; 
@@ -42,8 +44,10 @@ void setup () {
 //  noLoop();
 //  beginRecord(PDF, "littlemermaid.pdf"); 
 
-  timeInc = 30; 
-  increment = 0; 
+  timeInc = 20; //old one was 30 
+  mapMultiplier = 15; 
+  blinkDistance = 3; 
+  increment = 0;  
   distance = 0;   
 
   for (int i = 0; i < mermaid.length; i= i+timeInc) {
@@ -81,11 +85,11 @@ void setup () {
 //-----------------------------------------------------------------------------------------------------------------------
 
 void draw () {
-  //background (255); 
+  background (0); 
   pdf = (PGraphicsPDF) createGraphics(width, height, PDF, "pause-resume.pdf");
 
   for (int i=0; i< mermaid.length; i=i + timeInc) {                                //loop through the frames
-    int imageLoc = int(map (i, 0, mermaid.length, 0, width*10));  
+    int imageLoc = int(map (i, 0, mermaid.length, 0, width*mapMultiplier));  //this was 10 when inc was 30
 
     //println (i); 
 
@@ -105,10 +109,16 @@ void draw () {
       for (int k = 0; k< c1.blinks.size(); k++) {
         float blinkNum = (Float) c1.blinks.get(k);
 
-        if (blinkNum >= i-10 && blinkNum <= i+10) {
-          //distance = distance + 20; 
-          //frame[i].imageTint = 100; 
-          //println(frame[i].imageTint);
+        if (blinkNum >= i-blinkDistance && blinkNum <= i+blinkDistance) {
+
+          
+          frame[i].userBlinked.add((float)j); 
+          println (i + " " + frame[i].userBlinked.size()); 
+          //frame[i].numBlinked.add((float)1); 
+          
+          
+          
+          /*
           if(j == 0){
           frame[i].user1Blinked = true;
           }
@@ -117,31 +127,13 @@ void draw () {
           frame[i].user2Blinked = true;
 
           }
-          
-        //  println ("frame number " + i + "blinkNum " + blinkNum + " MATCH! "); 
+          */
         } 
-       // else {
-          //distance = distance + 0;
-        //  frame[i].imageTint = 255; 
-          //println ("frame number " + i + "blinkNum " + blinkNum);
-        //}
-
-/*
-        increment = increment + distance; 
-        frame[i].imageDistance = distance; 
-        if (frame[i].imageIncrement == 0) frame[i].imageIncrement = increment; 
-
-        println ("------------ ACTUAL DISTANCE IS: " + frame[i].imageDistance + "---------"); //distance, check!
-
-        
-
-         */
       }
-      //distance = 0;
     } 
  
     frame[i].imageX = imageLoc;
-    frame[i].display(laki); //laki is "size" in tagalog
+    frame[i].display(); //laki is "size" in tagalog
   }
 
   //endRecord();
@@ -196,7 +188,7 @@ void xmlEvent(proxml.XMLElement element) {
       for (int q = 0; q < blinks.length; q++) {  
 
         float blink = blinks[q].getFloatAttribute ("time");
-        println ("blink: " + blink); 
+        //println ("blink: " + blink); 
         //add the blink to the arraylist within the arraylist!
         c.blinks.add(blink);
       }
@@ -208,7 +200,7 @@ void xmlEvent(proxml.XMLElement element) {
   }
 }
 
-
+//-------------------------------------------------------------------------------------------------
 void keyPressed() {
   if (key == 'r') {
     if (recording) {
