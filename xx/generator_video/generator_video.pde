@@ -1,3 +1,14 @@
+
+/*
+
+Generator_Video
+generates real time representation for Blink Stories
+
+liamartinez.com
+
+*/
+
+
 import proxml.*; 
 
 import processing.video.*;            
@@ -15,19 +26,12 @@ long blinkNow;
 ArrayList<User> userList = new ArrayList();
 
 PFont font;
-int count; 
-
 
 int whatClip; 
 
 Film film; 
 
-int boxCorX, boxCorY; 
-int boxWidth, boxHeight; 
-int topBorder, sideBorder; 
-int boxEndX, boxEndY; 
 
-float maxTime; 
 //-----------------------------------------------------------------------------------------------------------------------
 
 void setup () {
@@ -43,17 +47,6 @@ void setup () {
   movie.goToBeginning();
   movie.pause();
   isPlaying = false; 
-  
-  sideBorder = width/15; 
-  topBorder = height/8; 
-  boxCorX = sideBorder;
-  boxCorY = topBorder;  
-  boxWidth = width - sideBorder * 2; 
-  boxHeight = height - topBorder * 2; 
-
-  count = 1; 
-
-  maxTime = 500; 
 
   xmlIO = new XMLInOut (this);
   try {

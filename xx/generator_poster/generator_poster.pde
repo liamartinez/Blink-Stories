@@ -1,3 +1,13 @@
+
+/*
+
+Generator_Poster
+generates posters for Blink Stories
+
+liamartinez.com
+
+*/
+
 import processing.pdf.*;
 
 boolean recording;

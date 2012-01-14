@@ -1,4 +1,13 @@
 
+/*
+
+Blink Recorder
+records the blinks for Blink Stories
+
+liamartinez.com
+
+*/
+
 import processing.video.*;            
 import hypermedia.video.*;       
 import java.awt.Rectangle;

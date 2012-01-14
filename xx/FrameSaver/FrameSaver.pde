@@ -1,10 +1,14 @@
-/**
- * Loop. 
- * 
- * Move the cursor across the screen to draw. 
- * Shows how to load and play a QuickTime movie file.  
- *
- */
+
+/*
+
+Frame Saver
+generates frames every 1500 millis for Blink Stories
+
+liamartinez.com
+
+*/
+
+
 int start; 
 int i; 
 
@@ -39,14 +43,11 @@ void movieEvent(Movie movie) {
 }
 
 void draw() {
-  //tint(255, 20);
+
   background(0);
 
   imageMode (CENTER); 
   image(movie, width/2, height/2, width, height);
-    //movie.play();
-  //text(getFrame() + " / " + (getLength() - 1), 10, 30);
-
   
   if ( millis () - start >= 1500) {
     start = millis(); 
